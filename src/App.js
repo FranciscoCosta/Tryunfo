@@ -13,8 +13,37 @@ class App extends React.Component {
     cardAttr3: 0,
     cardImage: '',
     cardRare: '',
-    cardTrunfo: '',
+    cardTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
+    deck: [],
+  };
+
+  salvaCarta = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    const carta = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+    this.setState((estadoa) => ({
+      deck: [...estadoa.deck, carta],
+    }));
   };
 
   numeroAtributo = (numero) => {
@@ -62,6 +91,11 @@ class App extends React.Component {
 
   handleSumbit = (event) => {
     event.preventDefault();
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
+    this.salvaCarta();
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -83,6 +117,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
     } = this.state;
 
@@ -98,6 +133,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSubmit={ this.handleSumbit }
@@ -110,6 +146,7 @@ class App extends React.Component {
           cardAttr3={ cardAttr3 }
           cardImage={ cardImage }
           cardRare={ cardRare }
+          hasTrunfo={ hasTrunfo }
           cardTrunfo={ cardTrunfo }
         />
       </div>
