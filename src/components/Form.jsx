@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 class Form extends React.Component {
   render() {
     const {
+      onSubmit,
       cardName,
       cardDescription,
       cardAttr1,
@@ -17,7 +18,7 @@ class Form extends React.Component {
       onSaveButtonClick,
     } = this.props;
     return (
-      <form>
+      <form onSubmit={ onSubmit }>
         <label htmlFor="name-input">
           <span>Nome</span>
           <input
@@ -123,6 +124,7 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Form;

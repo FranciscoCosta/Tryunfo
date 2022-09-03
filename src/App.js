@@ -60,6 +60,19 @@ class App extends React.Component {
     });
   };
 
+  handleSumbit = (event) => {
+    event.preventDefault();
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+    });
+  };
+
   render() {
     const {
       cardName,
@@ -87,6 +100,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
+          onSubmit={ this.handleSumbit }
         />
         <Card
           cardName={ cardName }
