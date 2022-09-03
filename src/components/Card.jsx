@@ -20,9 +20,16 @@ class Card extends React.Component {
           <h4>Nome da carta:</h4>
           <p data-testid="name-card">{cardName}</p>
         </div>
+        <div className="description-card">
+          <h4>Descricao:</h4>
+          <p data-testid="description-card">{cardDescription}</p>
+        </div>
+
         <div className="image-card">
           <h4>Imagem:</h4>
-          <img src={ cardImage } data-testid="image-card" alt={ cardDescription } />
+          <img src={ cardImage } 
+          data-testid="image-card"
+          alt={ cardName } />
         </div>
         <div className="attr-card">
           <h4>Atributo 1:</h4>
