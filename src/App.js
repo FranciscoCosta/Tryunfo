@@ -41,7 +41,7 @@ class App extends React.Component {
       const attr2 = this.numeroAtributo(cardAttr2);
       const attr3 = this.numeroAtributo(cardAttr3);
       const soma = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
-      
+
       const max = 210;
       if (
         cardName
@@ -54,10 +54,8 @@ class App extends React.Component {
         && attr3
       ) {
         this.setState({ isSaveButtonDisabled: false });
-        console.log("aqui")
       } else {
         this.setState({ isSaveButtonDisabled: true });
-        console.log("aquii")
       }
     });
   };
