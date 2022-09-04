@@ -17,6 +17,7 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     deck: [],
+    filtroDeck: '',
   };
 
   salvaCarta = () => {
@@ -111,7 +112,6 @@ class App extends React.Component {
     const { name } = event.target;
     const { deck, hasTrunfo } = this.state;
     const filtroApagar = deck.find(({ cardName }) => cardName === name);
-    console.log(filtroApagar);
 
     this.setState({
       deck: [...deck.filter((carta) => carta !== filtroApagar)],
@@ -130,6 +130,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       hasTrunfo,
+      filtroDeck,
       isSaveButtonDisabled,
       deck,
     } = this.state;
@@ -162,7 +163,8 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
           cardTrunfo={ cardTrunfo }
         />
-        {deck.map((carta) => (
+
+        {deck.filter((card) => card.cardName.includes(filtroDeck)).map((carta) => (
           <div key={ carta.cardName }>
             <Card
               cardName={ carta.cardName }
@@ -185,6 +187,16 @@ class App extends React.Component {
               Excluir
             </button>
           </div>))}
+        <div className="name-filter">
+          <h4>Filtro nome:</h4>
+          <input
+            data-testid="name-filter"
+            value={ filtroDeck }
+            onChange={ this.onInputChange }
+            name="filtroDeck"
+          />
+
+        </div>
       </div>
     );
   }
