@@ -107,6 +107,18 @@ class App extends React.Component {
     });
   };
 
+  apagaCarta = (event) => {
+    const { name } = event.target;
+    const { deck, hasTrunfo } = this.state;
+    const filtroApagar = deck.find(({ cardName }) => cardName === name);
+    console.log(filtroApagar);
+
+    this.setState({
+      deck: [...deck.filter((carta) => carta !== filtroApagar)],
+      hasTrunfo: filtroApagar ? !hasTrunfo : hasTrunfo,
+    });
+  };
+
   render() {
     const {
       cardName,
@@ -151,20 +163,28 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
         />
         {deck.map((carta) => (
-          <Card
-            cardName={ carta.cardName }
-            cardDescription={ carta.cardDescription }
-            cardAttr1={ carta.cardAttr1 }
-            cardAttr2={ carta.cardAttr2 }
-            cardAttr3={ carta.cardAttr3 }
-            cardImage={ carta.cardImage }
-            cardRare={ carta.cardRare }
-            hasTrunfo={ carta.hasTrunfo }
-            cardTrunfo={ carta.cardTrunfo }
-            key={ carta.cardName }
-
-          />
-        ))}
+          <div key={ carta.cardName }>
+            <Card
+              cardName={ carta.cardName }
+              cardDescription={ carta.cardDescription }
+              cardAttr1={ carta.cardAttr1 }
+              cardAttr2={ carta.cardAttr2 }
+              cardAttr3={ carta.cardAttr3 }
+              cardImage={ carta.cardImage }
+              cardRare={ carta.cardRare }
+              hasTrunfo={ carta.hasTrunfo }
+              cardTrunfo={ carta.cardTrunfo }
+              key={ carta.cardName }
+            />
+            <button
+              data-testid="delete-button"
+              type="submit"
+              onClick={ this.apagaCarta }
+              name={ carta.cardName }
+            >
+              Excluir
+            </button>
+          </div>))}
       </div>
     );
   }
